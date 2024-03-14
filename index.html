@@ -253,7 +253,42 @@ a:hover {
     color: #fff; /* 다크 모드에서 텍스트 색상 변경 */
 }
 
+/* 메모 카드 스타일 */
+.memo-card {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+}
 
+.memo-card.dark-mode {
+    background-color: #222;
+    color: #fff;
+}
+
+.memo-card textarea {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.memo-card button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.memo-card button:hover {
+    background-color: #0056b3;
+}
 </style>
 </head>
 <body>
@@ -331,6 +366,13 @@ a:hover {
         <div id="countdown" class="countdown-container"></div>
     </div>
 
+    <!-- 페이지 전환 버튼 -->
+    <div style="text-align: center; margin-top: 20px;">
+       <button onclick="toggleMemoPage()">메모</button>
+    </div>
+
+
+
     <div id="mail" class="notice-board">
         이메일 문의: <a class="link" href="mailto:jijunmine@gmail.com">jijunmine@gmail.com</a>
     </div>
@@ -338,6 +380,34 @@ a:hover {
 
 <!-- 다크 모드 토글 버튼 -->
 <button class="dark-mode-toggle" onclick="toggleDarkMode()">다크 모드</button>
+
+<!-- 메모 페이지 -->
+<div class="container" id="memo-container" style="display: none;">
+    <div class="header">
+        <h1>메모</h1>
+    </div>
+
+    <div id="memo-list">
+        <!-- 메모는 JavaScript로 동적으로 추가됩니다. -->
+    </div>
+
+    <div class="memo-card" id="memo-card">
+        <textarea id="memo-content" placeholder="메모를 입력하세요..."></textarea>
+        <input type="file" id="memo-image" accept="image/*">
+        <button onclick="saveMemo()">저장</button>
+    </div>
+
+    <!-- 페이지 전환 버튼 -->
+    <div style="text-align: center; margin-top: 20px;">
+        <button onclick="toggleMemoPage()">메모</button>
+     </div>
+
+
+
+
+</div>
+ 
+
 
 <script>
 // JavaScript 코드
@@ -380,6 +450,7 @@ function showImage() {
     const image = imageContainer.querySelector('img');
     image.src = images[currentIndex];
 }
+
 // 모의고사 날짜 설정 (년, 월은 현재로 고정)
 const mockExamDate = new Date('2024-03-28');
 
@@ -403,7 +474,77 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 // 페이지 로드 시 첫 번째 이미지 표시
 showImage();
+
+// 메모 기능
+function saveMemo() {
+    const memoContent = document.getElementById('memo-content').value.trim();
+    const memoImage = document.getElementById('memo-image').files[0];
+    if (memoContent !== '' || memoImage) {
+        const memoList = document.getElementById('memo-list');
+        const memoCard = document.createElement('div');
+        memoCard.classList.add('memo-card');
+        const memoText = document.createElement('p');
+        memoText.innerText = memoContent;
+        memoCard.appendChild(memoText);
+        if (memoImage) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const image = document.createElement('img');
+                image.src = e.target.result;
+                memoCard.appendChild(image);
+            }
+            reader.readAsDataURL(memoImage);
+        }
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = '삭제';
+        deleteButton.onclick = function() {
+            deleteMemo(this);
+        };
+        memoCard.appendChild(deleteButton);
+        memoList.appendChild(memoCard);
+        document.getElementById('memo-content').value = '';
+        // 로컬 스토리지에 메모 저장
+        localStorage.setItem('memo', memoList.innerHTML);
+    }
+}
+
+function deleteMemo(button) {
+    // 팝업 창을 통해 확인 받기
+    if (confirm('정말로 메모를 삭제하시겠습니까?')) {
+        const memoCard = button.parentNode;
+        memoCard.remove();
+        // 로컬 스토리지에서 메모 삭제
+        localStorage.setItem('memo', document.getElementById('memo-list').innerHTML);
+    }
+}
+
+// 페이지 로드 시 저장된 메모 로드
+window.onload = function() {
+    const memoList = document.getElementById('memo-list');
+    const savedMemo = localStorage.getItem('memo');
+    if (savedMemo) {
+        memoList.innerHTML = savedMemo;
+    }
+}
+
+// 메모 페이지 전환
+function toggleMemoPage() {
+    const mainPage = document.querySelector('.container');
+    const memoPage = document.getElementById('memo-container');
+    if (confirm('베타 버전에 접속하시겠습니까?')) {
+        if (mainPage.style.display === 'none') {
+            mainPage.style.display = 'block';
+            memoPage.style.display = 'none';
+        } else {
+            mainPage.style.display = 'none';
+            memoPage.style.display = 'block';
+        }
+    }
+}
 </script>
+
+<!-- 디자인을 위한 마지막으로 추가된 CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </body>
 </html>
