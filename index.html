@@ -59,7 +59,7 @@ body {
 }
 
 .image-container img {
-    max-width: 100%;
+    max-width: 80%;
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
@@ -289,6 +289,61 @@ a:hover {
 .memo-card button:hover {
     background-color: #0056b3;
 }
+
+
+
+/* 팝업 이미지 스타일 */
+.popup-image {
+    max-width: 100%; /* 팝업 창에 맞게 이미지 크기 조절 */
+    max-height: 80vh; /* 팝업 창에 맞게 이미지 높이 조절 */
+    display: block;
+    margin: auto;
+}
+
+
+/* 팝업 창 스타일 */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 닫기 버튼 스타일 */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background-color: transparent;
+    color: #333;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* 닫기 버튼 스타일 */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background-color: transparent;
+    color: #333;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* 닫기 버튼 아이콘 스타일 */
+.close-button i {
+    margin-right: -3px; /* 아이콘과 버튼 사이의 간격 조절 */
+}
+
+
 </style>
 </head>
 <body>
@@ -307,12 +362,16 @@ a:hover {
                 <p>이번 주에는 수행평가가 있습니다. 준비해주세요.</p>
             </li>
             <li>
-                <h3><a href="#schedule-change">일정 변경</a></h3>
-                <p>다음 주 월요일 시험이 연기되었습니다. 유의하세요.</p>
+                <h3><a href="#schedule-change">수행평가 안내</a></h3>
+                <p>지금까지 공지된 수행평가입니다.</p>
             </li>
             <li>
-                <h3><a href="#new-project">새로운 프로젝트</a></h3>
-                <p>다음 주부터 새로운 프로젝트에 착수합니다. 기대해주세요!</p>
+                <h3><a href="#new-project">모의고사</a></h3>
+                <p>모의고사가 얼마남지 않았습니다!</p>
+            </li>
+            <li>
+                <h3><a href="#competition">대회</a></h3>
+                <p>대회 안내입니다.</p>
             </li>
         </ul>
     </div>
@@ -329,23 +388,40 @@ a:hover {
     <div id="important-info" class="detail">
         <h2>중요한 안내</h2>
         <p>이번 주에는 수행평가가 있습니다. 준비해주세요.</p>
-        <p>1.수학</p>
-        <p>-예시입니다</p>
-        <p>-예시입니다</p>
-        <p>-예시입니다</p>
-        <p>더 자세한 정보는 <a href="#image-container">안내문</a>을 통해 확인할 수 있습니다.</p>
+        <p><mark>1. 기술&가정 수행평가</mark></p>
+        <p>-[독서 탐구하기] 수행평가입니다.</p>
+        <p>-제출기한은 3월 22일 23시 59분 입니다.</p>
+        <p>-15점만점에 기본점수 3점입니다.</p>
+        <p>더 자세한 정보는 <a href="#image-container">안내문</a>의 [독서 탐구하기 안내] 사진을 통해 확인할 수 있습니다.</p>
+        <br>
+        <p><mark>2. 체육 수행평가</mark></p>
+        <p>-[체육] 수행평가입니다.</p>
+        <p>-날짜는 19일 화요일입니다.</p>
+        <p>-범위는 저번에 선생님이 알려주신 탁구 규칙및 예절입니다.</p>
+        <p>-논술형 수행펴가 입니다.</p>
     </div>
 
     <div id="schedule-change" class="detail">
-        <h2>일정 변경</h2>
-        <p>다음 주 월요일 시험이 연기되었습니다. 유의하세요.</p>
-        <p>더 자세한 정보는 <a href="#image-container">안내문</a>을 통해 확인할 수 있습니다.</p>
+        <h2>수행평가 안내</h2>
+        <p><mark>1. 기술&가정 수행평가</mark></p>
+        <p>-[첨단 기술 소개하기] 수행평가입니다.</p>
+        <p>-발표는 4월 1일부터 시작합니다.</p>
+        <p>-25점만점에 기본점수 6점입니다.</p>
+        <p>-준비물 ppt는 <a class="link" href="mailto:jiiihntt@korea.kr">jiiihntt@korea.kr</a>을 통해 제출해야합니다..</p>
+        <p>더 자세한 정보는 <a href="#image-container">안내문</a>의 [첨단 기술 소개하기 안내] 사진을 통해 확인할 수 있습니다.</p>
+        <br>
+        <p><mark>2. 수학 수행평가</mark></p>
+        <p>-[수학 논리적 문제해결] 수행평가입니다.</p>
+        <p>-4월 3주차(1차 지필평가 전)에 봅인다</p>
+        <p>-범위는 교과서 문제 3문제 입니다.</p>
+        <p>더 자세한 정보는 <a href="#image-container">안내문</a>의 [수학 1학기 평가계획 안내] 사진을 통해 확인할 수 있습니다.</p>
     </div>
 
     <div id="new-project" class="detail">
-        <h2>새로운 프로젝트</h2>
-        <p>마지막주부터 새로운 <a href="#new-event">프로젝트</a>에 착수합니다. 기대해주세요!</p>
-        <p>더 자세한 정보는 <a href="#image-container">안내문</a>을 통해 확인할 수 있습니다.</p>
+        <h2>모의고사</h2>
+        <p>마지막주 28일 <a href="#new-event">모의고사</a>를 봅니다. 준비해주세요!</p>
+        <p>출제 과목은 국어, 수학, 영어, 한국사, 통합사회, 통합과학입니다</p>
+        <p>범위는 중학교 전범위입니다.</p>
     </div>
 
     <div id="new-event" class="detail">
@@ -354,11 +430,19 @@ a:hover {
         <p>더 자세한 정보는 <a href="#countdown">카운트다운</a>에서 확인할 수 있습니다.</p>
     </div>
 
+
+    <div id="competition" class="detail">
+        <h2>대회 안내</h2>
+        <p><mark>독서비평 토론회</mark>대회가 있습니다.</p>
+        <p>더 자세한 정보는 <a href="#image-container">안내문</a>의 [독서비평 토론회 안내] 사진을 통해 확인할 수 있습니다.</p>
+    </div>
+
     <div id="etc" class="detail">
         <h2>기타사항⚠️</h2>
         <p>이 사이트는 아직 완성된 것이 아닙니다<div class=""></div></p>
-        <p><mark>당선된다면 사이트는 계속 개선해나갈 예정입니다. 감사합니다 :)</mark></p>
+        <p><mark><a href="#mail">문의</a>를 통해 지속적으로 개선해나가겠습니다.</mark></p>
         <p>시험까지 남은 <a href="#countdown">기간</a>동안 열심히 공부해서 좋은성적 얻으시길바랍니다.</p>
+        <p>곧 수련회입니다! 장기자랑은 3월20일까지 신청가능합니다.</p>
         <p>다양한 정보들은 <a href="#announcement">공지</a>에서 확인할 수 있습니다. (문의는 <a href="#mail">이메일</a>을 통해 할수있습니다)</p>
     </div>
 
@@ -541,6 +625,46 @@ function toggleMemoPage() {
         }
     }
 }
+
+
+// 이미지를 클릭하여 팝업 창 열기
+document.querySelector('.image-container img').addEventListener('click', function() {
+    // 이미지의 src 가져오기
+    const src = this.src;
+    
+    // 이미지를 보여주기 위한 팝업창 생성
+    const popup = document.createElement('div');
+    popup.classList.add('popup');
+    
+    // 이미지 요소 생성
+    const img = document.createElement('img');
+    img.src = src;
+    img.classList.add('popup-image'); // 팝업 이미지에 클래스 추가
+    popup.appendChild(img);
+    
+    // 닫기 버튼 생성
+    const closeButton = document.createElement('button');
+    closeButton.innerHTML = '<i class="fas fa-times"></i>'; // X 아이콘 사용
+    closeButton.classList.add('close-button');
+    popup.appendChild(closeButton);
+    
+    // 팝업창을 body에 추가
+    document.body.appendChild(popup);
+    
+    // 팝업창 닫기 버튼 클릭 시 팝업창 닫기
+    closeButton.addEventListener('click', function() {
+        popup.remove();
+        // body에서 'popup-active' 클래스 제거하여 배경 회색 불투명 제거
+        document.body.classList.remove('popup-active');
+    });
+    
+    // body에 'popup-active' 클래스 추가하여 배경 회색 불투명하게 만듦
+    document.body.classList.add('popup-active');
+});
+
+
+
+
 </script>
 
 <!-- 디자인을 위한 마지막으로 추가된 CSS -->
