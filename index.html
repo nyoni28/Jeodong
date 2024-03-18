@@ -300,6 +300,14 @@ a:hover {
     margin: auto;
 }
 
+/* 모바일에서 이미지 크기 조절 */
+@media only screen and (max-width: 600px) {
+    .popup-image {
+        width: 100%; /* 모바일에서 이미지를 창에 꽉 채우도록 크기 조절 */
+        max-height: 80vh; /* 팝업 창에 맞게 이미지 높이 조절 */
+    }
+}
+
 
 /* 팝업 창 스타일 */
 .popup {
